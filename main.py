@@ -1,16 +1,16 @@
-# This is a sample Python script.
+from neural_network import load_model
+from drawing_app import DrawingApp
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# --- Настройки ---
+model_filename = "trained_model.pkl"
 
+# --- Загрузка модели ---
+nn = load_model(model_filename)
+if nn is None:
+    print(f"Ошибка: Файл модели не найден: {model_filename}. "
+          f"Запустите 'train.py' для обучения модели.")
+    exit()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# --- Запуск рисования ---
+app = DrawingApp()
+app.run(nn)
